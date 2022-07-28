@@ -1,0 +1,90 @@
+<div class = "d-flex justify-content-center m-4 pt-3 "> 
+    <div class="card w-75 " >
+        <h5 class="card-header"  style="font-size:2vw"><i class="fa fa-tags fa-1x"></i> Tag Site</h5>
+        <div class="card-body">
+            <form [formGroup]="assignTagForm"  (ngSubmit)="onSubmit()">
+                <div class="form-row ">
+                    <div class="form-group col-12 pr-2 pl-2">
+                        <label>Site  <span class="required-asterisk">*</span></label>
+                        <ng-select [(ngModel)]="selectedSiteValue" formControlName="siteId" placement="right" (click)="onClickSiteChange()"
+                        [ngbPopover]="siteDetails" popoverTitle="Details of Assign Site" #custom 
+                        formControlName="siteId" [ngClass]="{ 'is-invalid': (f.siteId.touched || submitted) && f.siteId.errors }" >
+                           <ng-option *ngFor="let site of sites" [value]="site.siteId" ><i class="fa fa-building"></i> : {{site.company}} ,
+                             <i class="fa fa-spinner fa-spin"></i> : {{site.siteType}} , <i class="fa fa-globe"></i> : {{site.location}}</ng-option>
+                        </ng-select>
+                        <div *ngIf="(f.siteId.touched || submitted) && f.siteId.errors" class="invalid-feedback">
+                            <div *ngIf="f.siteId.errors.required">Site ID is required</div>
+                        </div>
+                    <!--   <h4 *ngFor="let item of items">{{item}}</h4>--> 
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="form-group col-12 pr-2 pl-2">
+                        <label>Area    <span class="required-asterisk">*</span></label>
+                        <ng-select [(ngModel)]="selectedAreaValue" formControlName="areaCode" placement="right" (click)="onClickAreaChange()"
+                        [ngbPopover]="areaDetails" popoverTitle="Details of Area" #custom
+                        formControlName="areaCode" [ngClass]="{ 'is-invalid': (f.areaCode.touched || submitted) && f.areaCode.errors }" >
+                           <ng-option *ngFor="let area of areas" [value]="area.areaCode" >
+                             <i class="fa fa-spinner fa-spin"></i> : {{area.areaCode}} , <i class="fa fa-file-text"></i> : {{area.areaDesc}}</ng-option>
+                        </ng-select>
+                        <div *ngIf="(f.areaCode.touched || submitted) && f.areaCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.areaCode.errors.required">Area Code is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="form-group col-12 pr-2 pl-2">
+                        <label>Duty    <span class="required-asterisk">*</span></label>
+                        <ng-select [(ngModel)]="selectedDutiesValue" formControlName="dutyCode" placement="right" (click)="onClickDutyChange()"
+                        [ngbPopover]="dutyDetails" popoverTitle="Details of duty" #custom
+                        formControlName="dutyCode" [ngClass]="{ 'is-invalid': (f.dutyCode.touched || submitted) && f.dutyCode.errors }" >
+                           <ng-option *ngFor="let duty of duties" [value]="duty.dutyCode" >
+                             <i class="fa fa-spinner fa-spin"></i> : {{duty.dutyCode}} , <i class="fa fa-file-text"></i> : {{duty.dutyDesc}}</ng-option>
+                        </ng-select>
+                        <div *ngIf="(f.dutyCode.touched || submitted) && f.dutyCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.dutyCode.errors.required">Duty Code is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="form-group col-12 pr-2 pl-2">
+                        <label>Labour Hrs   <span class="required-asterisk">*</span></label>
+                        <input type="text" formControlName="labourHrs" class="form-control" [ngClass]="{ 'is-invalid': (f.labourHrs.touched || submitted) && f.labourHrs.errors }" />
+                        <div *ngIf="(f.labourHrs.touched || submitted) && f.labourHrs.errors" class="invalid-feedback">
+                            <div *ngIf="f.labourHrs.errors.required">Labour Hrs is required</div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="form-row justify-content-center">
+                    <div class="form-group col-2 pr-12 pl-2 flex-lg-column-reverse">
+                        <button class="btn btn-warning btn-sm btn-block " [disabled]="assignTagForm.invalid"><i class="fa fa-plus fa-1x"></i>Add</button>
+                    </div>
+                   
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #siteDetails>
+    <div *ngFor="let item of items" style="width: 500px;white-space: pre-line">
+        {{item}}
+    </div>
+</ng-template>
+
+
+<ng-template #areaDetails>
+    <div *ngFor="let item of items" style="width: 500px;white-space: pre-line">
+        {{item}}
+    </div>
+</ng-template>
+
+
+<ng-template #dutyDetails>
+    <div *ngFor="let item of items" style="width: 500px;white-space: pre-line">
+        {{item}}
+    </div>
+</ng-template>
+

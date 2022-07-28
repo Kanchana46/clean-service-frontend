@@ -1,0 +1,227 @@
+<div *ngIf="!showVrCode" class = "d-flex justify-content-center m-4 pt-3 "> 
+    <div class="card w-75 " >
+        <h5 class="card-header"  style="font-size:2vw">Register</h5>
+        <div class="card-body">
+            <form [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Employee No   <span class="required-asterisk">*</span></label>
+                        <input type="text" formControlName="employeeNo" class="form-control" [ngClass]="{ 'is-invalid': (f.employeeNo.touched || submitted) && f.employeeNo.errors }" />
+                        <div *ngIf="(f.employeeNo.touched || submitted) && f.employeeNo.errors" class="invalid-feedback">
+                            <div *ngIf="f.employeeNo.errors.required">Employee No. is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>First Name <span class="required-asterisk">*</span></label>
+                        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': (f.firstName.touched || submitted) && f.firstName.errors }" />
+                        <div *ngIf="(f.firstName.touched || submitted) && f.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="f.firstName.errors.required">First name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Last Name <span class="required-asterisk">*</span></label>
+                        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': (f.lastName.touched || submitted) && f.lastName.errors }" />
+                        <div *ngIf="(f.lastName.touched || submitted) && f.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="f.lastName.errors.required">Last name is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label class="mr-5 ">Gender <span class="required-asterisk">*</span></label>  
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male"
+                            formControlName="gender">
+                            <label class="form-check-label text-secondary" for="inlineRadio1">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female"
+                            formControlName="gender">
+                            <label class="form-check-label text-secondary" for="inlineRadio2">Female</label>
+                        </div>
+                        <div *ngIf="(f.gender.touched || submitted) && f.gender.errors" class="invalid-feedback">
+                            <div *ngIf="f.gender.errors.required">Gender is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Email <span class="required-asterisk">*</span></label>
+                    <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid':  (f.email.touched || submitted) && f.email.errors }" />
+                    <div *ngIf="(f.email.touched || submitted) && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col pr-2 pl-2">
+                        <label>Password <span class="required-asterisk">*</span></label>
+                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': (f.password.touched || submitted) && f.password.errors }" />
+                        <div *ngIf="(f.password.touched || submitted) && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                        </div>
+                    </div>
+                    <div class="form-group col pr-2 pl-2">
+                        <label>Confirm Password <span class="required-asterisk">*</span></label>
+                        <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': (f.confirmPassword.touched || submitted) && f.confirmPassword.errors }" />
+                        <div *ngIf="(f.confirmPassword.touched || submitted) && f.confirmPassword.errors" class="invalid-feedback">
+                            <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="(f.confirmPassword.touched || submitted) && f.confirmPassword.errors?.passwordMismatch">Passwords must match</div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Category <span class="required-asterisk">*</span></label>
+                        <select class="custom-select custom-select mb-3" formControlName="category" [(ngModel)]="selectedValue" 
+                        [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                            <option  *ngFor="let positon of category" [value]="positon">{{positon}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                        <div *ngIf="f.category.errors.required">Category is required</div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Mobile No <span class="required-asterisk">*</span></label>
+                    <input type="text" [textMask]="{mask: mask}" formControlName="mobileNo" class="form-control" [ngClass]="{ 'is-invalid': (f.mobileNo.touched || submitted) && f.mobileNo.errors }" />
+                    <div *ngIf="(f.mobileNo.touched || submitted) && f.mobileNo.errors" class="invalid-feedback">
+                        <div *ngIf="f.mobileNo.errors.required">Mobile No. is required</div>
+                    </div>
+                    </div>
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Phone (Residential) <span class="required-asterisk">*</span></label>
+                    <input type="text" [textMask]="{mask: mask}" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': (f.phone.touched || submitted) && f.phone.errors }" />
+                    <div *ngIf="(f.phone.touched || submitted) && f.phone.errors" class="invalid-feedback">
+                        <div *ngIf="f.phone.errors.required">Phone is required</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Street Address <span class="required-asterisk">*</span></label>
+                    <input type="text" formControlName="streetAddress" class="form-control" [ngClass]="{ 'is-invalid': (f.streetAddress.touched || submitted) && f.streetAddress.errors }" />
+                    <div *ngIf="(f.streetAddress.touched || submitted) && f.streetAddress.errors" class="invalid-feedback">
+                        <div *ngIf="f.streetAddress.errors.required">Street address is required</div>
+                    </div>
+                    </div>
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Suburb & Postal Code <span class="required-asterisk">*</span></label>
+                    <input type="text" formControlName="postalCode" class="form-control" [ngClass]="{ 'is-invalid': (f.postalCode.touched || submitted) && f.postalCode.errors }" />
+                    <div *ngIf="(f.postalCode.touched || submitted) && f.postalCode.errors" class="invalid-feedback">
+                        <div *ngIf="f.postalCode.errors.required">Postal code is required</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>State <span class="required-asterisk">*</span></label>
+                        <select class="custom-select custom-select mb-3" formControlName="state" [(ngModel)]="selectedStateValue" [ngClass]="{ 'is-invalid': (f.state.touched || submitted) && f.state.errors }">
+                            <option  *ngFor="let state of states" [value]="state">{{state}}</option>
+                        </select>
+                        <div *ngIf="(f.state.touched || submitted) && f.state.errors" class="invalid-feedback">
+                            <div *ngIf="f.state.errors.required">State is required</div>
+                        </div>
+                    </div>
+                </div>
+            
+            
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Tax File No <span class="required-asterisk">*</span></label>
+                    <input type="text" formControlName="taxFileNo" class="form-control" [ngClass]="{ 'is-invalid': (f.taxFileNo.touched || submitted) && f.taxFileNo.errors }" />
+                    <div *ngIf="(f.taxFileNo.touched || submitted) && f.taxFileNo.errors" class="invalid-feedback">
+                        <div *ngIf="f.taxFileNo.errors.required">Tax file No. is required</div>
+                    </div>
+                    </div>
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Hourly Rate <span class="required-asterisk">*</span></label>
+                    <input type="text" formControlName="hourlyRate" class="form-control" [ngClass]="{ 'is-invalid': (f.hourlyRate.touched || submitted) && f.hourlyRate.errors }" />
+                    <div *ngIf="(f.hourlyRate.touched || submitted) && f.hourlyRate.errors" class="invalid-feedback">
+                        <div *ngIf="f.hourlyRate.errors.required">Hourly rate is required</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Penalty 1 <span class="required-asterisk">*</span></label>
+                    <input type="text" formControlName="penalty1" class="form-control" [ngClass]="{ 'is-invalid': (f.penalty1.touched || submitted) && f.penalty1.errors }" />
+                    <div *ngIf="(f.penalty1.touched || submitted) && f.penalty1.errors" class="invalid-feedback">
+                        <div *ngIf="f.penalty1.errors.required">Penalty 1 is required</div>
+                    </div>
+                    </div>
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Penalty 2 <span class="required-asterisk">*</span></label>
+                    <input type="text" formControlName="penalty2" class="form-control" [ngClass]="{ 'is-invalid': (f.penalty2.touched || submitted) && f.penalty2.errors }" />
+                    <div *ngIf="(f.penalty2.touched || submitted) && f.penalty2.errors" class="invalid-feedback">
+                        <div *ngIf="f.penalty2.errors.required">Penalty 2 is required</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6 pt-3 pr-3 pl-2 pb-3">
+                        <label for=""><span class="required-asterisk">*</span></label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile" 
+                            name="myImage" 
+                            formControlName="downloadURL" 
+                            (change)="onFileSelected($event)"
+                            #userPhoto
+                            autocomplete="off"
+                            [ngClass]="{ 'is-invalid':  (f.downloadURL.touched || submitted) && f.downloadURL.errors }">
+
+                            <label class="custom-file-label" for="customFile">Choose image file.</label>
+                        </div>
+                        <div class="mt-2" *ngIf="uploadProgress$=='pending'">
+                            <small class="text-muted">Uploading...</small>
+                         </div>
+                         <div class="mt-1" *ngIf="uploadProgress$=='success'">
+                            <small class="text-muted">Uploaded</small>
+                         </div>
+                        <div *ngIf=" (f.downloadURL.touched || submitted) && f.downloadURL.errors" class="invalid-feedback">
+                            <div *ngIf="f.downloadURL.errors.required">Image is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-6 pt-3 pr-3 pl-2 pb-3 mt-2">
+                        <img [src]="imageURL" height="120">
+                    </div>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': (f.acceptTerms.touched || submitted) && f.acceptTerms.errors }" />
+                    <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions <span class="required-asterisk">*</span></label>
+                    <div *ngIf="(f.acceptTerms.touched || submitted) && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is required</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <button class="btn btn-warning btn-lg btn-block" >Register</button>
+                    </div>
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <button class="btn btn-secondary  btn-lg btn-block"  type="reset">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="showVrCode" class = "d-flex justify-content-center mt-5 pt-5" >
+    <div class="card text-center" style="width: 28rem;">
+        <div class="card-header">
+          <h3>Register Verification</h3>
+        </div>
+        <div class="card-body">
+            <form class="form-group m-2 p-2" [formGroup]="vrCodeForm" (ngSubmit)="verify()">
+                <input type="text" [textMask]="{mask: vr_mask}" formControlName="verificationCode" class="form-control" placeholder="Verification Code"/>
+                <input type="submit" class="btn btn-warning btn-md btn-block mt-4  mb-3" 
+                value="Verify">
+              </form>
+      </div>
+    </div>
+</div>

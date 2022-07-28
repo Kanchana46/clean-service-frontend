@@ -1,0 +1,34 @@
+<div class=" mr-4 ml-4 " style="height:26rem;">
+    <div class="card-body overflow-auto "  style="height: 24rem;">
+        <div class="list-group">
+            <div *ngFor="let employee of employeeDetails">
+           <div  class="list-group-item list-group-item-action" *ngIf = "employee.category != 'Admin'">
+               
+                
+                <a routerLink="/admin/viewEmployee/details">  Name: {{employee.firstName}}  </a>
+                
+                <ul class="pull-right action-buttons">
+                   
+                   <a style="color:red;" *ngIf = "employee.isVerified == 0">Unregistered</a>
+                   <a  style="color:rgb(0, 132, 255); margin-right: 10px;" *ngIf = "employee.isVerified == 1">Registered</a>
+              
+                   <button class="btn btn-sm btn-light ml-2 mr-2" (click) = "onUpdateUser(employee.id)"><span class="fa fa-edit"></span> Edit</button>
+                   <button  class="btn btn-sm btn-warning ml-2 mr-2"  (click) = "onDeleteUser(employee.id)"><span class="fa fa-trash"></span> Delete</button>
+                </ul>
+            
+                <hr class="style13">     
+    
+            </div>    
+    
+                      
+                   
+               
+          
+            </div>
+          </div>
+          
+    </div>
+  </div>
+
+
+

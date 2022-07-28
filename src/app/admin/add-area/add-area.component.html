@@ -1,0 +1,25 @@
+<div class = "d-flex justify-content-center m-4 pt-3 "> 
+    <div class="card w-75 " >
+        <h5 class="card-header"  style="font-size:2vw"><i class="fa fa-chart-area fa-1x"></i> Add Area</h5>
+        <div class="card-body">
+            <form [formGroup]="addAreaForm"  (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="form-group col-12 pr-2 pl-2">
+                        <label>Area Description   <span class="required-asterisk">*</span></label>
+                        <input type="text" formControlName="areaDesc" class="form-control" [ngClass]="{ 'is-invalid': (f.areaDesc.touched || submitted) && f.areaDesc.errors }" />
+                        <div *ngIf="(f.areaDesc.touched || submitted) && f.areaDesc.errors" class="invalid-feedback">
+                            <div *ngIf="f.areaDesc.errors.required">Area Description is required</div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="form-row justify-content-center">
+                    <div class="form-group col-2 pr-12 pl-2 flex-lg-column-reverse">
+                        <button class="btn btn-warning btn-sm btn-block " [disabled]="addAreaForm.invalid"><i class="fa fa-plus fa-1x"></i>Add</button>
+                    </div>
+                   
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

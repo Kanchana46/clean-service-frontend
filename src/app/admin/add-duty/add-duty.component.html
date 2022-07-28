@@ -1,0 +1,34 @@
+<div class = "d-flex justify-content-center m-4 pt-3 "> 
+    <div class="card w-75 " >
+        <h5 class="card-header"  style="font-size:2vw">Add Duty</h5>
+        <div class="card-body">
+            <form [formGroup]="addDutyForm"  (ngSubmit)="onSubmit()">
+                <div class="form-row ">
+                    <div class="form-group col-12 pr-2 pl-2">
+                        <label>Duty Description   <span class="required-asterisk">*</span></label>
+                        <input type="text" formControlName="dutyDesc" class="form-control" [ngClass]="{ 'is-invalid': (f.dutyDesc.touched || submitted) && f.dutyDesc.errors }" />
+                        <div *ngIf="(f.dutyDesc.touched || submitted) && f.dutyDesc.errors" class="invalid-feedback">
+                            <div *ngIf="f.dutyDesc.errors.required">Duty Description is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="form-group col-12 pr-2 pl-2">
+                        <label>Hourly Rate   <span class="required-asterisk">*</span></label>
+                        <input type="text" formControlName="hourlyRate" class="form-control" [ngClass]="{ 'is-invalid': (f.hourlyRate.touched || submitted) && f.hourlyRate.errors }" />
+                        <div *ngIf="(f.hourlyRate.touched || submitted) && f.hourlyRate.errors" class="invalid-feedback">
+                            <div *ngIf="f.hourlyRate.errors.required">Hourly Rate is required</div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="form-row justify-content-center">
+                    <div class="form-group col-2 pr-12 pl-2 flex-lg-column-reverse">
+                        <button class="btn btn-warning btn-sm btn-block " [disabled]="addDutyForm.invalid"><i class="fa fa-plus fa-1x"></i>Add</button>
+                    </div>
+                   
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,230 @@
+<div class = "d-flex justify-content-center m-4 pt-3 "> 
+    <div class="card w-75 " >
+        <h5 class="card-header"  style="font-size:2vw">Add Site</h5>
+        <div class="card-body">
+            <form [formGroup]="addSiteForm"  (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Company   <span class="required-asterisk">*</span></label>
+                        <input type="text" formControlName="company" class="form-control" [ngClass]="{ 'is-invalid': (f.company.touched || submitted) && f.company.errors }" />
+                        <div *ngIf="(f.company.touched || submitted) && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">Company Name. is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Site Description <span class="required-asterisk">*</span></label>
+                        <input type="text" formControlName="siteDesc" class="form-control" [ngClass]="{ 'is-invalid': (f.siteDesc.touched || submitted) && f.siteDesc.errors }" />
+                        <div *ngIf="(f.siteDesc.touched || submitted) && f.siteDesc.errors" class="invalid-feedback">
+                            <div *ngIf="f.siteDesc.errors.required">Site Description is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Location <span class="required-asterisk">*</span></label>
+                        <input type="text" formControlName="location" class="form-control" [ngClass]="{ 'is-invalid': (f.location.touched || submitted) && f.location.errors }" />
+                        <div *ngIf="(f.location.touched || submitted) && f.location.errors" class="invalid-feedback">
+                            <div *ngIf="f.location.errors.required">Location is required</div>
+                        </div>
+                    </div>
+                </div>
+               
+                
+                
+             
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Site Type <span class="required-asterisk">*</span></label>
+                        <select class="custom-select custom-select mb-3" formControlName="siteType" [(ngModel)]="selectedValue" 
+                        [ngClass]="{ 'is-invalid': submitted && f.siteType.errors }">
+                            <option  *ngFor="let positon of siteType" [value]="positon">{{positon}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="submitted && f.siteType.errors" class="invalid-feedback">
+                        <div *ngIf="f.siteType.errors.required">Site Type is required</div>
+                    </div>
+                </div>
+               
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Address <span class="required-asterisk">*</span></label>
+                    <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': (f.address.touched || submitted) && f.address.errors }" />
+                    <div *ngIf="(f.address.touched || submitted) && f.address.errors" class="invalid-feedback">
+                        <div *ngIf="f.address.errors.required">Address is required</div>
+                    </div>
+                    </div>
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Suburb<span class="required-asterisk">*</span></label>
+                    <input type="text" formControlName="suburb" class="form-control" [ngClass]="{ 'is-invalid': (f.suburb.touched || submitted) && f.suburb.errors }" />
+                    <div *ngIf="(f.suburb.touched || submitted) && f.suburb.errors" class="invalid-feedback">
+                        <div *ngIf="f.suburb.errors.required">Suburb is required</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Postal Code <span class="required-asterisk">*</span></label>
+                    <input type="text" formControlName="postCode" class="form-control" [ngClass]="{ 'is-invalid': (f.postCode.touched || submitted) && f.postCode.errors }" />
+                    <div *ngIf="(f.postCode.touched || submitted) && f.postCode.errors" class="invalid-feedback">
+                        <div *ngIf="f.postCode.errors.required">Postal code is required</div>
+                    </div>
+                    </div>
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>State <span class="required-asterisk">*</span></label>
+                        <select class="custom-select custom-select mb-3" formControlName="state" [(ngModel)]="selectedStateValue" [ngClass]="{ 'is-invalid': (f.state.touched || submitted) && f.state.errors }">
+                            <option  *ngFor="let state of states" [value]="state" >{{state}}</option>
+                        </select>
+                        <div *ngIf="(f.state.touched || submitted) && f.state.errors" class="invalid-feedback">
+                            <div *ngIf="f.state.errors.required">State is required</div>
+                        </div>
+                    </div>
+                </div>
+            
+            
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Country <span class="required-asterisk">*</span></label>
+                    <input type="text" formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': (f.country.touched || submitted) && f.country.errors }" />
+                    <div *ngIf="(f.country.touched || submitted) && f.country.errors" class="invalid-feedback">
+                        <div *ngIf="f.country.errors.required">Country Name is required</div>
+                    </div>
+                    </div>
+                    <!---------->
+
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Site Manager <span class="required-asterisk">*</span></label>
+                        <!--
+<select class="custom-select custom-select mb-3" formControlName="siteMgr" [(ngModel)]="selectedSiteMgrValue" [ngClass]="{ 'is-invalid': (f.siteMgr.touched || submitted) && f.siteMgr.errors }">
+                            <option  *ngFor="let siteMgr of siteManagers" [value]="siteMgr">{{siteMgr.fullName}}</option>
+                        </select>
+                        -->
+                        
+                        <ng-select [(ngModel)]="selectedSiteMgrValue" formControlName="siteMgr" (change)="onChangeSiteManager()"
+                         formControlName="siteMgr" [ngClass]="{ 'is-invalid': (f.siteMgr.touched || submitted) && f.siteMgr.errors }" >
+                            <ng-option *ngFor="let siteMgr of siteManagers" [value]="siteMgr">{{siteMgr.fullName}}</ng-option>
+                         </ng-select>
+                        <div *ngIf="(f.siteMgr.touched || submitted) && f.siteMgr.errors" class="invalid-feedback">
+                            <div *ngIf="f.siteMgr.errors.required">Site Manager Name is required</div>
+                        </div>
+                    </div>
+                     <!---------->
+
+                 
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Site Assistent Manager <span class="required-asterisk">*</span></label>
+                        <!--
+<select  class="custom-select custom-select mb-3" formControlName="siteAstMgr" [(ngModel)]="selectedAssitManagerValue" [ngClass]="{ 'is-invalid': (f.siteAstMgr.touched || submitted) && f.siteAstMgr.errors }">
+                            <option  *ngFor="let siteAstMgr of assitManagers" [value]="siteAstMgr">{{siteAstMgr.fullName}}</option>
+                        </select>
+
+                        -->
+                        
+                        <ng-select [(ngModel)]="selectedAssitManagerValue" formControlName="siteAstMgr" (change)="onChangeAsstManager()"
+                         formControlName="siteAstMgr" [ngClass]="{ 'is-invalid': (f.siteAstMgr.touched || submitted) && f.siteAstMgr.errors }" >
+                            <ng-option *ngFor="let siteAstMgr of assitManagers" [value]="siteAstMgr" >{{siteAstMgr.fullName}}</ng-option>
+                         </ng-select>
+                        
+                    <div *ngIf="(f.siteAstMgr.touched || submitted) && f.siteAstMgr.errors" class="invalid-feedback">
+                        <div *ngIf="f.siteAstMgr.errors.required">Site Assistent Manager Name is required</div>
+                    </div>
+                  
+                    </div>
+
+                    <!------>
+                    
+                    <button type="button" class="btn btn-success btn-circle btn-sm" placement="right" (click)="onClickPopOver('siteAsstManager')"
+                    [ngbPopover]="asstManagerContent" popoverTitle="Asst.Manager Assigned Dates" #custom>
+                    <i class="fa fa-info "></i>
+             
+            </button>
+                    <!------>
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Head Cleaner<span class="required-asterisk">*</span></label>
+                        <!--
+<select class="custom-select custom-select mb-3" formControlName="headCleaner" [(ngModel)]="selectedHeadCleanerValue" 
+                        [ngClass]="{ 'is-invalid': (f.headCleaner.touched || submitted) && f.headCleaner.errors }" (change)="onChange($event)">
+                            <option  *ngFor="let headCleaner of headCleaners" [value]="headCleaner">{{headCleaner.fullName}}</option>
+                        </select>
+                        -->
+                        <ng-select [(ngModel)]="selectedHeadCleanerValue" formControlName="headCleaner" (change)="onChangeHeadCleaner()"
+                         formControlName="headCleaner" [ngClass]="{ 'is-invalid': (f.headCleaner.touched || submitted) && f.headCleaner.errors }" >
+                            <ng-option *ngFor="let headCleaner of headCleaners" [value]="headCleaner">{{headCleaner.fullName}}</ng-option>
+                         </ng-select>
+
+                         <button type="button" class="btn btn-success btn-circle btn-sm" placement="right" (click)="onClickPopOver('headCleaner')"
+                    [ngbPopover]="headCleanerContent" popoverTitle="Head Cleaner Assigned Dates" #custom>
+                    <i class="fa fa-info "></i></button>
+                    <div *ngIf="(f.headCleaner.touched || submitted) && f.headCleaner.errors" class="invalid-feedback">
+                        <div *ngIf="f.headCleaner.errors.required">Head Cleaner Name is required</div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <label>Team Leader <span class="required-asterisk">*</span></label>
+                        <!--
+<select class="custom-select custom-select mb-3" formControlName="teamLeader" [(ngModel)]="selectedTeamLeaderValue" [ngClass]="{ 'is-invalid': (f.teamLeader.touched || submitted) && f.teamLeader.errors }">
+                            <option  *ngFor="let teamLeader of teamLeaders" [value]="teamLeader">{{teamLeader.fullName}}</option>
+                        </select>
+                        -->
+                        
+
+                        <ng-select [(ngModel)]="selectedTeamLeaderValue" formControlName="teamLeader" (change)="onChangeTeamLeader()"
+                        [ngClass]="{ 'is-invalid': (f.teamLeader.touched || submitted) && f.teamLeader.errors }">
+                            <ng-option *ngFor="let teamLeader of teamLeaders" [value]="teamLeader">{{teamLeader.fullName}}</ng-option>
+                         </ng-select>
+                    <div *ngIf="(f.teamLeader.touched || submitted) && f.teamLeader.errors" class="invalid-feedback">
+                        <div *ngIf="f.teamLeader.errors.required">Team Leader Name is required</div>
+                    </div>
+                    </div>
+                   
+                </div>
+        <!--------------date picker---------------------->
+        <div class="form-row">
+            <div class="form-group col-6 pr-2 pl-2">
+                <label>Start Date <span class="required-asterisk">*</span></label>
+            
+                <input name="someName"  formControlName="startDate" class="form-control" [dpDayPicker]="config" [ngClass]="{ 'is-invalid': (f.startDate.touched || submitted) && f.startDate.errors }" />  
+                <div *ngIf="(f.startDate.touched || submitted) && f.startDate.errors" class="invalid-feedback">
+                    <div *ngIf="f.startDate.errors.required">Date is required</div>
+                </div>
+            </div>
+            <div class="form-group col-6 pr-2 pl-2">
+                <label>End Date <span class="required-asterisk">*</span></label>
+                <input name="someName" formControlName="endDate" class="form-control" [dpDayPicker]="config" [ngClass]="{ 'is-invalid': (f.endDate.touched || submitted) && f.endDate.errors }" />  
+                <div *ngIf="(f.endDate.touched || submitted) && f.endDate.errors" class="invalid-feedback">
+                    <div *ngIf="f.endDate.errors.required">Date is required</div>
+                </div>
+            </div>
+        </div>
+             <!--------------date picker---------------------->
+            
+                <div class="form-row">
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <button class="btn btn-warning btn-lg btn-block" [disabled]="addSiteForm.invalid">Register</button>
+                    </div>
+                    <div class="form-group col-6 pr-2 pl-2">
+                        <button class="btn btn-secondary  btn-lg btn-block"  type="reset" >Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ng-template #asstManagerContent>
+    <div *ngFor="let dates of asstManagerDates">
+        {{dates}}
+    </div>
+</ng-template>
+
+<ng-template #headCleanerContent>
+    <div *ngFor="let dates of headCleanerDates">
+        {{dates}}
+    </div>
+</ng-template>
+
+

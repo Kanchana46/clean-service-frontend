@@ -1,0 +1,102 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<div class="container">
+   <h3 class="pb-3 mb-4 font-italic border-bottom">
+       Site Details
+   </h3>
+   <div class="row">
+      <div class="col-md-6" *ngFor="let getSite of getSiteDetail">
+         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+               <strong class="d-inline-block mb-2 text-primary">
+                  {{getSite.company}}</strong>  
+               <h3 class="mb-0">
+                  <a class="text-dark" href="#">Category : {{getSite.siteType}}</a>
+               </h3>
+               <div class="mb-1 text-muted small">From {{getSite.startDate}} to {{getSite.endDate}}</div>
+               <p class="card-text mb-auto">Description : {{getSite.siteDesc}}</p>
+               <p class="card-text mb-auto">Country : {{getSite.country}}</p>
+               <p class="card-text mb-auto">Location : {{getSite.location}}</p>
+              
+               <a class="btn btn-outline-primary btn-sm" role="button" href="http://www.jquery2dotnet.com/">Continue reading</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" *ngIf = "getSite.siteType == 'Office & warehouses'"
+            src="https://www.avso.org/wp-content/uploads/files/9/8/9/ultra-modern-office-of-flash-design-an-old-warehouse-awakened-to-new-life-0-989.jpg"
+             style="width: 200px; height: 250px;">
+             <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" *ngIf = "getSite.siteType == 'Schools'"
+             src="https://thumbs.dreamstime.com/z/group-school-kids-writing-test-classroom-education-elementary-learning-people-concept-pens-notebooks-60473146.jpg"
+              style="width: 200px; height: 250px;">
+              <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" *ngIf = "getSite.siteType == 'Super Markets'"
+              src="https://thumbor.thedailymeal.com/w0tpcPdEwGnFTE-7-Q5eEo3BGQs=//https://www.thedailymeal.com/sites/default/files/story/2016/supermarketcart.JPG"
+               style="width: 200px; height: 250px;">
+               <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" *ngIf = "getSite.siteType == 'Hospitals'"
+               src="https://i0.wp.com/ajp.com.au/wp-content/uploads/2017/08/22404342_xl.jpg?fit=2024%2C1349&ssl=1"
+                style="width: 200px; height: 250px;">
+                <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" *ngIf = "getSite.siteType == 'Cinemas'"
+                src="https://cdn.techgeek.com.au/uploads/2020/07/banner-640x368.jpg"
+                 style="width: 200px; height: 250px;">
+                 <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" *ngIf = "getSite.siteType == 'Play ground centers'"
+                 src="https://www.playpros.com/wp-content/uploads/2020/03/Web_Presentation-IN-Old-Bethel-Methodist-Church-78.jpg"
+                  style="width: 200px; height: 250px;">
+                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" *ngIf = "getSite.siteType == 'Night Clubs and Pubs'"
+                 src="https://whatson.ae/wp-content/uploads/2016/09/GettyImages-145061102.jpg"
+                  style="width: 200px; height: 250px;">
+                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" *ngIf = "getSite.siteType == 'Resturents & commericial kithens'"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAgCrEuRiC-hs7pA9MEigueAqTDHF-uTyq2Q&usqp=CAU"
+                   style="width: 200px; height: 250px;">
+                   <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" *ngIf = "getSite.siteType == 'Car Parks'"
+                  src="https://www.parking.asn.au/wp-content/uploads/The_Star_Casino_750.jpg"
+                   style="width: 200px; height: 250px;">
+
+                   
+         </div>
+      </div>
+    
+   </div>
+  
+   
+   
+   <h3 class="mt-3 pb-3 mb-4 font-italic border-bottom">
+       Assign Details
+   </h3>
+   <div class="row">
+      <div class="col-md-4" *ngFor="let tagData of tagDetails">
+         <div class="card">
+            <img class="card-img-top" *ngIf = "tagData.siteType == 'Office & warehouses'" 
+            src="https://www.avso.org/wp-content/uploads/files/9/8/9/ultra-modern-office-of-flash-design-an-old-warehouse-awakened-to-new-life-0-989.jpg" alt="Card image cap">
+            <img class="card-img-top"  *ngIf = "tagData.siteType == 'Schools'" 
+            src="https://thumbs.dreamstime.com/z/group-school-kids-writing-test-classroom-education-elementary-learning-people-concept-pens-notebooks-60473146.jpg" alt="Card image cap">
+            <img class="card-img-top" *ngIf = "tagData.siteType == 'Super Markets'" 
+            src="https://thumbor.thedailymeal.com/w0tpcPdEwGnFTE-7-Q5eEo3BGQs=//https://www.thedailymeal.com/sites/default/files/story/2016/supermarketcart.JPG" alt="Card image cap">
+            <img class="card-img-top" *ngIf = "tagData.siteType == 'Hospitals'" 
+            src="https://i0.wp.com/ajp.com.au/wp-content/uploads/2017/08/22404342_xl.jpg?fit=2024%2C1349&ssl=1" alt="Card image cap">
+            <img class="card-img-top" *ngIf = "tagData.siteType == 'Cinemas'" 
+            src="https://cdn.techgeek.com.au/uploads/2020/07/banner-640x368.jpg" alt="Card image cap">
+            <img class="card-img-top" *ngIf = "tagData.siteType == 'Play ground centers'" 
+            src="https://www.playpros.com/wp-content/uploads/2020/03/Web_Presentation-IN-Old-Bethel-Methodist-Church-78.jpg" alt="Card image cap">
+            <img class="card-img-top" *ngIf = "tagData.siteType == 'Night Clubs and Pubs'" 
+            src="https://whatson.ae/wp-content/uploads/2016/09/GettyImages-145061102.jpg" alt="Card image cap">
+            <img class="card-img-top" *ngIf = "tagData.siteType == 'Resturents & commericial kithens'" 
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAgCrEuRiC-hs7pA9MEigueAqTDHF-uTyq2Q&usqp=CAU" alt="Card image cap">
+            <img class="card-img-top" *ngIf = "tagData.siteType == 'Car Parks'" 
+            src="https://www.parking.asn.au/wp-content/uploads/The_Star_Casino_750.jpg" alt="Card image cap">
+
+            <div class="card-body">
+               <h5 class="card-title border-bottom pb-3">{{tagData.company}} ({{tagData.siteType}}) <a href="#" class="float-right d-inline-flex share"><i class="fas fa-share-alt text-primary"></i></a></h5>
+               <p class="card-text">Site Description : {{tagData.siteDesc}} <br/>Area For Cleaning : {{tagData.areaDesc}}
+               <br/>Assing Duty : {{tagData.dutyDesc}} <br/>Houtly Rate : {{tagData.hourlyRate}} <br/>
+             Labour Hours : {{tagData.labourHrs}}</p>
+               <a href="#" class="float-right">Read more <i class="fas fa-angle-double-right"></i></a>
+            </div>
+         </div>
+      </div>
+     
+     
+   </div>
+   <hr>
+   
+</div>

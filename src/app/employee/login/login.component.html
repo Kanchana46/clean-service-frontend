@@ -1,0 +1,41 @@
+
+<div class = "d-flex justify-content-center mt-5 pt-5" >
+    <div class="card text-center" style="width: 25rem;">
+        <div *ngIf="router.url === '/admin/login'" class="card-header">
+            <i class="material-icons fa-3x">admin_panel_settings</i>
+          <h3>Admin Login</h3>
+        </div>
+        <div  *ngIf="router.url === '/login'" class="card-header">
+           
+          <h3>Login</h3>
+        </div>
+        <div class="card-body">
+            <form class="form-group m-2 p-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <input type="text" id="login" class="form-control mt-3 mb-2 " name="login" 
+                    placeholder="Email" autocomplete="false" formControlName="email" 
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                </div>
+
+                <input type="password" id="password" class="form-control mt-3 mb-2 " name="login" 
+                    placeholder="Password" autocomplete="false" formControlName="password"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
+                   
+                <input type="submit" *ngIf="router.url === '/admin/login'"   class="btn btn-warning btn-md btn-block mt-4  mb-3"
+                [disabled]="loginForm.invalid" value="Log In">
+       <!--   <div *ngFor="let getSite of getSiteDetail">--> 
+                <input type="submit" *ngIf="router.url === '/login'"  class="btn btn-warning btn-md btn-block mt-4  mb-3" value="Log In">
+        <!--    </div> --> 
+            </form>
+        <div class="card-footer text-muted">
+            <a *ngIf="router.url === '/admin/login'"  routerLink="/admin/forgot-password">Forgot password</a> 
+            <a *ngIf="router.url === '/login'" routerLink="/forgot-password">Forgot password</a>
+        </div>
+      </div>
+</div>
